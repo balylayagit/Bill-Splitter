@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Ylaya_Splitter_MOBAPP.MainPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundImageSource="bggalaxy.png">
+    
+    <!--COLOR RESOURCES FOR REUSING-->
+
+    <ContentPage.Resources>
+        <Color x:Key="Primary">#0C64D6</Color>
+        <Color x:Key="Secondary">white</Color>
+        <Color x:Key="Tertiary">#241023</Color>
+    </ContentPage.Resources>
+
+    <!--DIVIDING THE CONTENTPAGE-->
+    
+    
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".05*"/>
+            <RowDefinition Height=".3*"/>
+            <RowDefinition Height=".7*"/>
+        </Grid.RowDefinitions>
+
+        <!--TITTLE-->
+        
+        <Label Grid.Row="0" 
+               Text="SPLITTERATOR" 
+               CharacterSpacing="2.9"
+               HorizontalOptions="Center" 
+               TextColor="{StaticResource Primary}"
+               FontAttributes="Bold" 
+               FontSize="Large"/>
+
+        <!--FRAME AND GRADIENT COLOR FOR FRAME-->
+
+        <Frame  Grid.Row="1"
+				Padding="30"
+				BorderColor="Transparent"
+				CornerRadius ="4"
+                Opacity="10">
+                        
+            <Frame.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStopCollection>
+                        <GradientStop x:Name="grad" Offset="0" Color="#0D92F4"/>
+                        <GradientStop  Offset="1" Color="#0015FF"/>
+                    </GradientStopCollection>
+                </LinearGradientBrush>
+            </Frame.Background>
+
+         <!--DEVIDING THE FRAME-->
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".1*"/>
+                    <RowDefinition Height=".9*"/>
+                </Grid.RowDefinitions>
+                
+                <!--CONTENT INSIDE THE FRAME-->
+
+                <Label
+                    Grid.ColumnSpan="3"
+                    Grid.RowSpan="4"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="TOTAL PERSON"
+                    TextColor="{StaticResource Secondary}"/>
+
+                <Label Grid.Column="0"
+                       Grid.Row="1"
+                       Text="PHP"
+                       TextColor="{StaticResource Secondary}"
+                       FontSize="35"
+                       FontAttributes="Bold"
+                       />
+
+                <Label
+                    x:Name="lblTotal"
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    FontSize="35"
+                    Text="0.00"
+                    TextColor="{StaticResource Secondary}"
+                    VerticalOptions="CenterAndExpand"/>
+
+                <BoxView
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="0,10,0,0"
+                    VerticalOptions="Center"
+                    Color="{StaticResource Secondary}"/>
+
+
+                <Image Source="astro.png"
+                       Margin="10,200,-350,40"
+                       HeightRequest="100"/>
+
+                <Image Source="line.png"
+                       Margin="10,190,-140,40"
+                       HeightRequest="50"/>
+
+
+                <VerticalStackLayout
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                    <Label
+                        Text="SUBTOTAL"
+                        TextColor="{StaticResource Secondary}"/>
+                    <Label
+                        x:Name="lblSubtotal"
+                        FontAttributes="Bold"
+                        Text="P0.00"
+                        TextColor="{StaticResource Secondary}"/>
+                    <Label
+                        Text="TIP PER PERSON"
+                        TextColor="{StaticResource Secondary}"/>
+                    <Label
+                        x:Name="lblTipPerPerson"
+                        Margin="0,10,0,0"
+                        Text="0.00"
+                        TextColor="{StaticResource Secondary}"/>
+                </VerticalStackLayout>
+            </Grid>
+        </Frame>
+        
+        
+        <!--SECOND PART OF THE CONTENT PAGE-->
+        
+            <!--DIVIDING THE SECOND PART-->
+        
+        <Grid
+            Grid.Row="2" Margin="0,15,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".3*"/>
+                <ColumnDefinition Width=".7*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <!--VERTICAL LAYOUT FOR THE INPUTS-->
+            
+            <VerticalStackLayout   
+                                   Grid.ColumnSpan="2"
+                                   Grid.RowSpan="3"
+                                   Grid.Column="0">
+      
+                <Label
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        Text="ENTER BILL"
+                        FontSize="Title"
+                        TextColor="{StaticResource Primary}"/>
+                <Entry
+                         x:Name="txtBill"
+                         Grid.Column="1"
+                         BackgroundColor="{StaticResource Secondary}"
+                         Keyboard="Numeric"
+                         TextColor= "{StaticResource Tertiary}"
+                         VerticalOptions="Center"
+                         Completed="txtBill_Completed"
+                         Placeholder="Enter Bill Amount"
+                         PlaceholderColor="Gray"/>
+                
+            </VerticalStackLayout>
+
+            <VerticalStackLayout    Grid.Row="1"
+                                    Grid.ColumnSpan="2"
+                                    Grid.RowSpan="3">
+                <!--SELECT TIP PERCENTAGE-->
+
+                <HorizontalStackLayout  x:Name="TipSelector"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        HeightRequest="70"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Spacing="10">
+                    
+                    <Button
+                            Text="10%"
+                            WidthRequest="70"
+                            Background="{StaticResource Primary}"
+                            TextColor="{StaticResource Secondary}"
+                            Clicked="Button_Clicked"/>
+                    
+                    <Button
+                            Text="15%"
+                            WidthRequest="70"
+                            Background="{StaticResource Primary}"
+                            TextColor="{StaticResource Secondary}"
+                            Clicked="Button_Clicked"/>
+                    
+                    <Button
+                            Text="20%"
+                            WidthRequest="70"
+                            Clicked="Button_Clicked"
+                            TextColor="{StaticResource Secondary}"
+                            Background="{StaticResource Primary}"/>
+                    
+                    <Button 
+                           ImageSource="dollah.png"
+                           WidthRequest="70"   
+                           Clicked="Button_Clicked_1"
+                           TextColor="{StaticResource Secondary}"
+                           Background="{StaticResource Primary}"/>
+                    
+                    
+                </HorizontalStackLayout>
+
+                <VerticalStackLayout    x:Name="CustomPanel"
+                                        IsVisible="false"
+                                        Grid.Row="1"
+                                        Grid.Column="1">
+
+                    <Label 
+                       Grid.Row="1"
+                       Text="INPUT TIP AMOUNT"
+                       VerticalOptions="Center"
+                       FontSize="Title"
+                       TextColor="{StaticResource Primary}"
+                       HorizontalTextAlignment="Center"/>
+
+                    <Entry
+                       x:Name="TipCustom"
+                       Grid.Column="1"
+                       BackgroundColor="{StaticResource Secondary}"
+                       Keyboard="Numeric"
+                       VerticalOptions="Center"
+                       Placeholder="Enter Tip Amount"
+                       PlaceholderColor="Gray"
+                       TextColor="{StaticResource Tertiary}"
+                       Completed="TipCustom_Completed"/>
+
+                    <Button x:Name="btnReturn"
+                            Text="Back"
+                            WidthRequest="70"   
+                            Clicked="btnReturn_Clicked"
+                            TextColor="{StaticResource Secondary}"
+                            Background="{StaticResource Primary}"/>
+
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+            <VerticalStackLayout x:Name="SliderPanel"
+                                 Grid.Row="2"
+                                 Grid.ColumnSpan="2"
+                                 Grid.RowSpan="3">
+                <Label
+                     x:Name="lblTip"
+                     Text="0%"
+                     Grid.Column="0"
+                     TextColor="{StaticResource Primary}"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     FontSize="Title"/>
+
+                <Slider
+                     MinimumTrackColor="{StaticResource Primary}"
+                     ThumbImageSource="boom.png"
+                     x:Name="sldTip"
+                     Grid.Row="2"
+                     Grid.Column="1"
+                     Maximum="50"
+                     Minimum="0"
+                     ValueChanged="sldTip_ValueChanged"/>
+                
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="3"
+                                 Grid.ColumnSpan="2"
+                                 Grid.RowSpan="3">
+
+                <Label
+                    Grid.Row="3"
+                    Text="SPLIT"
+                    TextColor="{StaticResource Primary}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    FontSize="Title"/>
+
+                <HorizontalStackLayout
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+                    <Button
+                                x:Name="btnMinus"
+                                Text="-"
+                                WidthRequest="70"
+                                TextColor="{StaticResource Secondary}"
+                                Background="{StaticResource Primary}"
+                                Clicked="btnMinus_Clicked"/>
+                    <Entry
+                              x:Name="lblNoPersons"
+                              Margin="-5,0,-5,0"
+                              BackgroundColor="{StaticResource Secondary}"
+                              FontSize="25"
+                              Keyboard="Numeric"
+                              HeightRequest="50"
+                              HorizontalOptions="Center"
+                              HorizontalTextAlignment="Center"
+                              Text="1"
+                              TextColor="{StaticResource Primary}"
+                              VerticalOptions="Center"
+                              VerticalTextAlignment="Center"
+                              WidthRequest="100"
+                              Completed="lblNoPersons_Completed"
+                              />
+                    <Button
+                              x:Name="btnPlus"
+                              Text="+"
+                              TextColor="{StaticResource Secondary}"
+                              Background="{StaticResource Primary}"
+                              WidthRequest="70"
+                              Clicked="btnPlus_Clicked"/>
+
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+
+        <Image Source="rocket.png"
+               Margin="200,1000,20,30"
+               HeightRequest="700"
+               WidthRequest="100"/>
+
+        <Image Source="alien.png"
+               Margin="10,1000,200,100"
+               HeightRequest="700"
+               WidthRequest="100"/>
+
+    </Grid>
+
+</ContentPage>
